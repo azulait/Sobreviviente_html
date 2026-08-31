@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'ShlopZombie';
+    src: url('font/shlop rg.otf') format('opentype');
+}
+body{
+    font-family: 'ShlopZombie', cursive , sans-serif;
+}
+
+p, button, .modal-body {
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
