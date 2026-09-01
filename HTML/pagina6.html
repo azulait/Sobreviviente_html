@@ -4,8 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/estilos.css">
 </head>
-<body>
+<body class="bg-dark text-white">
+
+
+        <!-- Navegación General -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-bunker">
+      <div class="container-fluid">
+        
+        <!-- Nombre de la Tienda -->
+        <a class="navbar-brand" href="Inicio.html">
+          <span class="titulo-bunker fs-3 text-white">El Bunker</span>
+        </a>
+
+        <!-- Botón para celulares -->
+        <button class="navbar-toggler border-danger" type="button" data-bs-toggle="collapse" data-bs-target="#menuBunker" aria-controls="menuBunker" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Lista de Secciones -->
+        <div class="collapse navbar-collapse" id="menuBunker">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-bunker active" href="Inicio.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-bunker" href="pagina2.html">Armas y Defensa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-bunker" href="pagina3.html">Kits Médicos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-bunker" href="pagina4.html">Raciones y Agua</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-bunker" href="pagina5.html">Refugios y Mapas</a>
+            </li>
+                        <li class="nav-item">
+              <a class="nav-link nav-link-bunker" href="pagina6.html">Registro de Superviviente</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
     
+    <!-- Formulario de Registro -->
+    <main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 bg-dark p-4 rounded border border-danger shadow-lg">
+            
+            <h2 class="TituloBunker text-center text-danger mb-3 fs-1">REGISTRO DE SUPERVIVIENTE</h2>
+            <p class="text-warning text-center fs-6 mb-4">Ingresa tus datos antes de solicitar acceso a las provisiones.</p>
+
+            <form id="registroBunkerForm" onsubmit="validarFormulario(event)">
+                <!-- Nombre / Alias -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label text-white fs-5">Nombre o Alias de Combate</label>
+                    <input type="text" class="form-bg-bunker form-control text-white bg-secondary border-danger" id="nombre" placeholder="Ej: Cazador_99" required>
+                </div>
+
+                <!-- Correo / Frecuencia Digital -->
+                <div class="mb-3">
+                    <label for="email" class="form-label text-white fs-5">Frecuencia Digital (Correo Electrónico)</label>
+                    <!-- type="email" exige el arroba y el dominio obligatoriamente -->
+                    <input type="email" class="form-bg-bunker form-control text-white bg-secondary border-danger" id="email" placeholder="superviviente@bunker.com" required>
+                </div>
+
+                <!-- Teléfono / Canal de Transmisión -->
+                <div class="mb-3">
+                    <label for="telefono" class="form-label text-white fs-5">Canal de Transmisión (Teléfono)</label>
+                    <!-- pattern exige entre 8 y 15 números -->
+                    <input type="tel" pattern="[0-9+ ]{8,15}" class="form-bg-bunker form-control text-white bg-secondary border-danger" id="telefono" placeholder="+56912345678" required>
+                </div>
+
+                <!-- El botón ahora es type="submit" y NO tiene los atributos del modal aquí -->
+                <button type="submit" class="btn btn-danger w-100 fw-bold py-2 mt-3 fs-4 shadow border border-light">
+                    SOLICITAR CREDENCIAL DE ACCESO
+                </button>
+            </form>
+
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-danger border-2">
+            <div class="modal-header border-danger">
+                <h5 class="modal-title text-danger fw-bold fs-3" id="confirmacionModalLabel">CREDENCIAL EN PROCESO</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <p class="fs-4 text-warning mb-3">¡Registro Recibido!</p>
+                <p class="fs-6 text-white">Tus datos han sido encriptados y enviados a la base del búnker. Si el área de inspección determina que no estás infectado, recibirás las coordenadas de retiro.</p>
+            </div>
+            <div class="modal-footer border-danger justify-content-center">
+                <button type="button" class="btn btn-outline-warning fw-bold fs-5 px-4" data-bs-dismiss="modal">ENTENDIDO, VOLVER AL BÚNKER</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+<script>
+  function validarFormulario(event) {   
+    event.preventDefault(); 
+    var modalConfirmacion = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+    modalConfirmacion.show();
+  }
+</script>
 </body>
 </html>

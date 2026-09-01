@@ -55,3 +55,28 @@ p, button, .modal-body {
     font-weight: bold;
     border-bottom: 2px solid #ffc107;
 }
+
+
+
+
+
+.form-bg-bunker {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    font-family: sans-serif;
+    font-size: 1rem !important;
+}
+
+.form-bg-bunker::placeholder {
+    color: #888888 !important;
+}
+
+.form-bg-bunker:focus {
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.5) !important;
+}
+
+.form-label {
+    font-size: 1.5rem !important;
+    letter-spacing: 1px;
+}
