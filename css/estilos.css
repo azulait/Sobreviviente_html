@@ -10,3 +10,48 @@ p, button, .modal-body {
     font-size: 3rem;
     letter-spacing: 2px;
 }
+
+.TituloBunker{
+    font-size: 10rem;
+    letter-spacing: 3px;
+    
+}
+
+.texto-blanco {
+    color: #ffffff !important;
+}
+
+.texto-rojo {
+    color: #dc3545 !important; 
+}
+
+.texto-amarillo {
+    color: #ffc107 !important; 
+}
+
+.navbar-bunker {
+    background-color: #121212 !important;
+    border-bottom: 2px solid #dc3545 !important;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+
+.nav-link-bunker {
+    color: #ffffff !important;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    padding: 8px 15px !important;
+}
+
+
+.nav-link-bunker:hover {
+    color: #dc3545 !important; 
+    text-shadow: 0 0 8px rgba(220, 53, 69, 0.8);
+}
+
+.nav-link-bunker.active {
+    color: #ffc107 !important; 
+    font-weight: bold;
+    border-bottom: 2px solid #ffc107;
+}

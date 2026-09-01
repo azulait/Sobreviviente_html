@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refugio de Supervivencia</title>
+    <title>El Bunker</title>
     <!-- CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tu archivo de estilos (sube un nivel desde la carpeta HTML) -->
@@ -19,7 +19,7 @@
 
         <!-- Contenido superpuesto en el centro -->
         <div class="position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-3">
-            <h1 class="display-3 fw-bold text-uppercase mb-2">Bunker</h1>
+            <h1 class="TituloBunker fw-bold text-uppercase mb-2"> El Bunker</h1>
             
             <button type="button" class="btn btn-danger btn-lg fw-bold px-4 py-3 shadow-lg border border-2 border-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
               ENTRAR A LA TIENDA DE SUMINISTROS
@@ -33,15 +33,16 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark text-white border-danger border-2">
           <div class="modal-header border-danger">
-            <h1 class="modal-title fs-5 text-danger fw-bold" id="exampleModalLabel">⚠️ Control de Infección</h1>
+            <h1 class="modal-title fs-5 text-danger fw-bold" id="exampleModalLabel">⚠️ Control de infectados</h1>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center py-4">
-            <p class="fs-4 fw-bold text-warning mt-2">¿Has sido infectado o mordido por un zombie en las últimas 24 horas?</p>
+            <p class="fs-4 fw-bold text-warning mt-2">¿Has sido mordido por un zombie ultimamente?</p>
           </div>
-          <div class="modal-footer border-danger justify-content-center">
-            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">No, soy humano</button>
-            <button type="button" class="btn btn-danger fw-bold" onclick="window.location.href='https://www.google.com/search?q=que+hacer+si+me+muerde+un+zombie'">Sí, me mordieron</button>
+          <div class="modal-footer border-danger justify-content-center gap-5">
+            <button type="button" class="btn btn-outline-light" onclick= "window.location.href='Inicio.html'">No</button>
+            
+            <button type="button" class="btn btn-danger fw-bold" onclick="window.location.href='http://www.zambranitis.com/2015/04/guia-para-suicidarte-correctamente.html'">Si</button>
           </div>
         </div>
       </div>
