@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Pildoras",
+    "descripcion": "Frasco de analgésicos de acción inmediata. Proporciona salud temporal rápida para mantenerte en marcha y amortiguar el dolor",
+    "precio": "$15 USD",
+    "imagen": "../img/pildoras.webp"
+  },
+  {
+    "id": 2,
+    "nombre": "Inyeccion de adrenalina",
+    "descripcion": "Dosis de choque. Restaura tu energía temporalmente y te permite reaccionar sin perder el ritmo.",
+    "precio": "$35 USD",
+    "imagen": "../img/inyeccion.jpeg"
+  },
+  {
+    "id": 3,
+    "nombre": "Botiquin de trauma",
+    "descripcion": "Paquete médico de emergencia completo. Contiene vendas de grado militar y material de sutura para curaciones profundas.",
+    "precio": "$70 USD",
+    "imagen": "../img/botiquin.webp"
+  }
+]
