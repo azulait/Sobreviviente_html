@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hacha de supervivencia",
+    "precio": "$15 USD",
+    "descripcion": "Ideal para cortar madera y defenderse de zombies.",
+    "imagen": "../img/hacha.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Lanzallamas portátil",
+    "precio": "$85 USD",
+    "descripcion": "w+m1 Lanzallamas portátil de supervivencia. Ideal para ahuyentar zombies y cocinar al aire libre.",
+    "imagen": "../img/lanzallamas.jpeg"
+  },
+  {
+    "id": 3,
+    "nombre": "Molotov",
+    "precio": "$25 USD",
+    "descripcion": "Ideal para ahuyentar zombies y encender fogatas.",
+    "imagen": "../img/molotov.webp"
+  },
+  {
+    "id": 4,
+    "nombre": "Motosierra de supervivencia",
+    "precio": "$150 USD",
+    "descripcion": "Ideal para 'oneshotear' a enemigos, cortar madera y decapitar zombies.",
+    "imagen": "../img/motosierra.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Cuchillo mariposa de supervivencia",
+    "precio": "$85 USD",
+    "descripcion": "Cuchillo totalmente inutil contra zombies, pero es bonito y puedes hacer trucos facheros con él.",
+    "imagen": "../img/mariposa.png"
+  }
+]
