@@ -82,56 +82,68 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Script de Productos y Funcionalidad -->
-    <script>
-      let listaProductos = [];
+<script>
+  let listaProductos = [];
+  fetch('../json/productos.json')
+    .then(response => response.json())
+    .then(productos => {
+      listaProductos = productos;
+      const contenedor = document.getElementById('contenedor-productos');
 
-      // 1. Cargar productos desde el JSON
-      fetch('../json/productos.json')
-        .then(response => response.json())
-        .then(productos => {
-          listaProductos = productos;
-          const contenedor = document.getElementById('contenedor-productos');
-          
-          productos.forEach(prod => {
-            contenedor.innerHTML += `
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card card-estilos h-100 text-white shadow">
-                <div class="img-estilos">
-                  <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}" style="height: 200px; object-fit: contain;">
-                </div>
-                <div class="card-body d-flex flex-column">
-                  <h5 class="card-title text-danger fw-bold fs-4 titulo-bunker">${prod.nombre}</h5>
-                  <div class="mt-auto pt-3">
-                    <button class="btn btn-estilos w-100 py-2" onclick="verDetalles(${prod.id})">VER DETALLES</button>
-                  </div>
-                </div>
+      productos.forEach(prod => {
+        contenedor.innerHTML += `
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <div class="card card-estilos h-100 text-white shadow">
+            <div class="img-estilos">
+              <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}" style="height: 200px; object-fit: contain;">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-danger fw-bold fs-4 titulo-bunker">${prod.nombre}</h5>
+              <div class="mt-auto pt-3">
+                <button class="btn btn-estilos w-100 py-2" onclick="verDetalles(${prod.id})">VER DETALLES</button>
               </div>
             </div>
-            `;
-          });
+          </div>
+        </div>
+        `;
+      });
+    })
+    .catch(error => console.error('Error al cargar productos:', error));
 
-         
-        })
-        .catch(error => console.error('Error al cargar productos:', error));
+  function verDetalles(idProducto) {
+    const producto = listaProductos.find(prod => prod.id === idProducto);
 
-      function verDetalles(idProducto) {
-        const producto = listaProductos.find(prod => prod.id === idProducto);
+    if (producto) {
+      document.getElementById('modalTitulo').innerText = producto.nombre;
+      document.getElementById('modalImagen').src = producto.imagen;
+      document.getElementById('modalDescripcion').innerText = producto.descripcion;
+      document.getElementById('modalPrecio').innerText = producto.precio;
 
-        if (producto) {
-          document.getElementById('modalTitulo').innerText = producto.nombre;
-          document.getElementById('modalImagen').src = producto.imagen;
-          document.getElementById('modalDescripcion').innerText = producto.descripcion;
-          document.getElementById('modalPrecio').innerText = producto.precio;
-
-        
-
-          const modal = new bootstrap.Modal(document.getElementById('modalDetalle'));
-          modal.show();
-        }
+      const btnAgregar = document.querySelector('#modalDetalle .btn-danger');
+      if (btnAgregar) {
+        btnAgregar.onclick = function() {
+          agregarAlCarrito(producto);
+        };
       }
 
-     
-    </script>
+      const modal = new bootstrap.Modal(document.getElementById('modalDetalle'));
+      modal.show();
+    }
+  }
+
+  function agregarAlCarrito(producto) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const existe = carrito.find(item => item.id === producto.id);
+
+    if (existe) {
+      existe.cantidad += 1;
+    } else {
+      carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+</script>
 
     <footer class="bg-dark text-white text-center py-3 border-top border-danger mt-5">
   <div class="container">
