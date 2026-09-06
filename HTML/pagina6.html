@@ -10,22 +10,17 @@
 </head>
 <body class="bg-dark text-white">
 
-
-        <!-- Navegación General -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-bunker">
       <div class="container-fluid">
         
-        <!-- Nombre de la Tienda -->
         <a class="navbar-brand" href="Inicio.html">
           <span class="titulo-bunker fs-3 text-white">El Bunker</span>
         </a>
 
-        <!-- Botón para celulares -->
         <button class="navbar-toggler border-danger" type="button" data-bs-toggle="collapse" data-bs-target="#menuBunker" aria-controls="menuBunker" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Lista de Secciones -->
         <div class="collapse navbar-collapse" id="menuBunker">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -52,7 +47,6 @@
       </div>
     </nav>
     
-    <!-- Formulario de Registro -->
     <main class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6 bg-dark p-4 rounded border border-danger shadow-lg">
@@ -61,27 +55,76 @@
             <p class="text-warning text-center fs-6 mb-4">Ingresa tus datos antes de solicitar acceso a las provisiones.</p>
 
             <form id="registroBunkerForm" onsubmit="validarFormulario(event)">
-                <!-- Nombre / Alias -->
+
                 <div class="mb-3">
-                    <label for="nombre" class="form-label text-white fs-5">Nombre o Alias de Combate</label>
-                    <input type="text" class="form-bg-bunker form-control text-white bg-secondary border-danger" id="nombre" placeholder="Ej: Cazador_99" required>
+                    <label for="run" class="form-label text-white fs-5">RUN (sin puntos ni guión)</label>
+                    <input type="text" class="form-control text-white bg-secondary border-danger" id="run" placeholder="12345678K" maxlength="10" required>
+                    <small class="text-danger d-none" id="errorRun">Ingresa un RUN válido sin puntos ni guión (ej: 12345678K).</small>
                 </div>
 
-                <!-- Correo / Frecuencia Digital -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label text-white fs-5">Nombre</label>
+                    <input type="text" class="form-control text-white bg-secondary border-danger" id="nombre" placeholder="Ej: Juan" maxlength="50" required>
+                    <small class="text-danger d-none" id="errorNombre">El nombre es obligatorio.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="apellidos" class="form-label text-white fs-5">Apellidos</label>
+                    <input type="text" class="form-control text-white bg-secondary border-danger" id="apellidos" placeholder="Ej: Pérez" maxlength="50" required>
+                    <small class="text-danger d-none" id="errorApellidos">Los apellidos son obligatorios.</small>
+                </div>
+
                 <div class="mb-3">
                     <label for="email" class="form-label text-white fs-5">Frecuencia Digital (Correo Electrónico)</label>
-                    <!-- type="email" exige el arroba y el dominio obligatoriamente -->
-                    <input type="email" class="form-bg-bunker form-control text-white bg-secondary border-danger" id="email" placeholder="superviviente@bunker.com" required>
+                    <input type="email" class="form-control text-white bg-secondary border-danger" id="email" placeholder="superviviente@duoc.cl" maxlength="100" required>
+                    <small class="text-danger d-none" id="errorEmail">Debe ser @duoc.cl, @profesor.duoc.cl o @gmail.com (máx. 100 caracteres).</small>
                 </div>
 
-                <!-- Teléfono / Canal de Transmisión -->
                 <div class="mb-3">
-                    <label for="telefono" class="form-label text-white fs-5">Canal de Transmisión (Teléfono)</label>
-                    <!-- pattern exige entre 8 y 15 números -->
-                    <input type="tel" pattern="[0-9+ ]{8,15}" class="form-bg-bunker form-control text-white bg-secondary border-danger" id="telefono" placeholder="+56912345678" required>
+                    <label for="password" class="form-label text-white fs-5">Clave de Acceso (Contraseña)</label>
+                    <input type="password" class="form-control text-white bg-secondary border-danger" id="password" required>
+                    <small class="text-danger d-none" id="errorPassword">La contraseña debe tener al menos 6 caracteres.</small>
                 </div>
 
-                <!-- El botón ahora es type="submit" y NO tiene los atributos del modal aquí -->
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label text-white fs-5">Confirmar Clave de Acceso</label>
+                    <input type="password" class="form-control text-white bg-secondary border-danger" id="confirmPassword" required>
+                    <small class="text-danger d-none" id="errorConfirmPassword">Las contraseñas no coinciden.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fechaNacimiento" class="form-label text-white fs-5">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control text-white bg-secondary border-danger" id="fechaNacimiento" required>
+                    <small class="text-danger d-none" id="errorFechaNacimiento">La fecha de nacimiento es obligatoria.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="region" class="form-label text-white fs-5">Región Sectorial</label>
+                    <select class="form-select text-white bg-secondary border-danger" id="region" required>
+                        <option value="">-- Selecciona una región --</option>
+                    </select>
+                    <small class="text-danger d-none" id="errorRegion">Selecciona una región.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="comuna" class="form-label text-white fs-5">Comuna / Búnker Local</label>
+                    <select class="form-select text-white bg-secondary border-danger" id="comuna" required disabled>
+                        <option value="">-- Selecciona primero una región --</option>
+                    </select>
+                    <small class="text-danger d-none" id="errorComuna">Selecciona una comuna.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="direccion" class="form-label text-white fs-5">Dirección / Coordenadas</label>
+                    <input type="text" class="form-control text-white bg-secondary border-danger" id="direccion" placeholder="Ej: Av. Siempre Viva 123" maxlength="100" required>
+                    <small class="text-danger d-none" id="errorDireccion">La dirección es obligatoria.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefono" class="form-label text-white fs-5">Canal de Transmisión (Teléfono - Opcional)</label>
+                    <input type="tel" class="form-control text-white bg-secondary border-danger" id="telefono" placeholder="+56912345678">
+                </div>
+
                 <button type="submit" class="btn btn-danger w-100 fw-bold py-2 mt-3 fs-4 shadow border border-light">
                     SOLICITAR CREDENCIAL DE ACCESO
                 </button>
@@ -117,6 +160,8 @@
     modalConfirmacion.show();
   }
 </script>
+
+<script src="../js/registro.js"></script>
 
 <footer class="bg-dark text-white text-center py-3 border-top border-danger mt-5">
   <div class="container">
