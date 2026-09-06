@@ -80,6 +80,7 @@
           
           productos.forEach(prod => {
             contenedor.innerHTML += `
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
               <div class="card card-bunker-medico h-100 text-white shadow">
                 <div class="img-contenedor-medico">
                   <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}" style="height: 200px; object-fit: contain;">
@@ -91,6 +92,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             `;
           });
         })
