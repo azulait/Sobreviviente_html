@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Datos para Regiones y Comunas Dinámicas
   const regionesYComunas = [
     {
       region: "Región Metropolitana de Santiago",
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const validarEmail = (correo) => {
     if (correo.length > 100) return false;
-    return /^[a-zA-Z0-9._%+-]+@(duocuc\.cl|profesor\.duocuc\.cl|gmail\.com)$/i.test(correo);
+    return /^[a-zA-Z0-9._%+-]+@(duoc\.cl|duocuc\.cl|profesor\.duoc\.cl|gmail\.com)$/i.test(correo);
   };
 
   form.addEventListener('submit', (e) => {
@@ -58,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const validarCampo = (inputId, errorId, condicion) => {
       const input = document.getElementById(inputId);
       const errorMsg = document.getElementById(errorId);
+
+      if (!input || !errorMsg) return;
 
       if (condicion) {
         errorMsg.classList.add('d-none');
@@ -90,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nombre: document.getElementById('nombre').value.trim(),
         apellidos: document.getElementById('apellidos').value.trim(),
         email: document.getElementById('email').value.trim(),
+        password: pass, // <-- ¡CLAVE GUARDADA CORRECTAMENTE!
         fechaNacimiento: document.getElementById('fechaNacimiento').value,
         region: regionSelect.options[regionSelect.selectedIndex].text,
         comuna: comunaSelect.value,
@@ -101,10 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
       usuarios.push(usuarioNuevo);
       localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-      alert('¡Acceso concedido! Usuario registrado y guardado en almacenamiento local.');
       form.reset();
       comunaSelect.disabled = true;
       comunaSelect.innerHTML = '<option value="">-- Selecciona primero una región --</option>';
+
+      const modalConfirmacion = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+      modalConfirmacion.show();
     }
   });
 });
