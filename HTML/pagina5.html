@@ -68,51 +68,55 @@
       document.addEventListener('DOMContentLoaded', cargarCarrito);
 
       function cargarCarrito() {
-        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        const contenedor = document.getElementById('contenedor-carrito');
-        const resumen = document.getElementById('resumen-carrito');
-        const totalSpan = document.getElementById('total-precio');
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const contenedor = document.getElementById('contenedor-carrito');
+  const resumen = document.getElementById('resumen-carrito');
+  const totalSpan = document.getElementById('total-precio');
 
-        contenedor.innerHTML = '';
+  contenedor.innerHTML = '';
 
-        if (carrito.length === 0) {
-          contenedor.innerHTML = `
-            <div class="text-center p-5 border border-danger rounded bg-secondary">
-              <h3 class="text-warning mb-3">No tienes provisiones asignadas en el carrito.</h3>
-              <a href="pagina4.html" class="btn btn-danger fw-bold fs-5 mt-2">Ir a Suministros</a>
-            </div>
-          `;
-          resumen.classList.add('d-none');
-          return;
-        }
+  if (carrito.length === 0) {
+    contenedor.innerHTML = `
+      <div class="text-center p-5 border border-danger rounded bg-secondary">
+        <h3 class="text-warning mb-3">No tienes provisiones asignadas en el carrito.</h3>
+        <a href="pagina4.html" class="btn btn-danger fw-bold fs-5 mt-2">Ir a Suministros</a>
+      </div>
+    `;
+    resumen.classList.add('d-none');
+    return;
+  }
 
-        let total = 0;
+  let total = 0;
 
-        carrito.forEach((prod, index) => {
-          const precioNumero = parseFloat(String(prod.precio).replace('$', '').trim()) || 0;
-          const subtotal = precioNumero * prod.cantidad;
-          total += subtotal;
+  carrito.forEach((prod, index) => {
+    
+    const precioLimpio = String(prod.precio).replace(/[^0-9]/g, '');
+    const precioNumero = parseInt(precioLimpio, 10) || 0;
+    
+   
+    const subtotal = precioNumero * prod.cantidad;
+    total += subtotal;
 
-          contenedor.innerHTML += `
-            <div class="d-flex justify-content-between align-items-center bg-dark p-3 rounded border border-danger text-white">
-              <img src="${prod.imagen}" alt="${prod.nombre}" style="width: 70px; height: 70px; object-fit: contain;" class="rounded border border-secondary">
-              <div class="flex-grow-1 ms-3">
-                <h5 class="mb-1 text-danger fw-bold">${prod.nombre}</h5>
-                <small class="text-light">Precio unitario: ${prod.precio}</small>
-              </div>
-              <div class="text-center me-4">
-                <span class="badge bg-secondary fs-6">Cantidad: ${prod.cantidad}</span>
-              </div>
-              <div class="text-end">
-                <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto(${index})">✕</button>
-              </div>
-            </div>
-          `;
-        });
+    contenedor.innerHTML += `
+      <div class="d-flex justify-content-between align-items-center bg-dark p-3 rounded border border-danger text-white">
+        <img src="${prod.imagen}" alt="${prod.nombre}" style="width: 70px; height: 70px; object-fit: contain;" class="rounded border border-secondary">
+        <div class="flex-grow-1 ms-3">
+          <h5 class="mb-1 text-danger fw-bold">${prod.nombre}</h5>
+          <small class="text-light">Precio unitario: ${prod.precio}</small>
+        </div>
+        <div class="text-center me-4">
+          <span class="badge bg-secondary fs-6">Cantidad: ${prod.cantidad}</span>
+        </div>
+        <div class="text-end">
+          <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto(${index})">✕</button>
+        </div>
+      </div>
+    `;
+  });
 
-        totalSpan.innerText = `$${total} USD`;
-        resumen.classList.remove('d-none');
-      }
+  totalSpan.innerText = `$${total.toLocaleString('es-CL')} CLP`;
+  resumen.classList.remove('d-none');
+}
 
       function eliminarProducto(index) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
