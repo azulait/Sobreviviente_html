@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const mensajeErrorGeneral = document.getElementById('mensajeErrorGeneral');
 
   const validarEmail = (correo) => {
-    return /^[a-zA-Z0-9._%+-]+@(duoc\.cl|duocuc\.cl|profesor\.duoc\.cl|gmail\.com)$/i.test(correo);
-  };
+  return /^[a-zA-Z0-9._%+-]+@(duoc\.cl|duocuc\.cl|profesor\.duoc\.cl|gmail\.com|bunker\.com)$/i.test(correo);
+};
 
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
@@ -14,8 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mensajeErrorGeneral.classList.add('d-none');
       }
 
-      const emailInput = document.getElementById('loginEmail').value.trim();
-      const passInput = document.getElementById('loginPassword').value.trim();
+  const emailInput = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const passInput = document.getElementById('loginPassword').value.trim();
+
+// VERIFICAR CREDENCIALES DE ADMINISTRADOR
+if (emailInput === 'admin@bunker.com' && passInput === 'admin123') {
+  window.location.href = 'admin.html';
+  return; 
+}
 
       let isValid = true;
 

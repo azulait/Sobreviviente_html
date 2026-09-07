@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - El Búnker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="bg-dark text-white">
+
+    <!-- Navbar Admin -->
+    <nav class="navbar navbar-dark bg-danger shadow">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 fw-bold">⚠️ SISTEMA CENTRAL BÚNKER - MODO ADMIN</span>
+            <button class="btn btn-outline-light fw-bold" onclick="window.location.href='Inicio.html'">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <!-- Pestañas de Navegación -->
+        <ul class="nav nav-tabs border-danger" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active text-danger fw-bold bg-dark border-danger" id="usuarios-tab" data-bs-toggle="tab" data-bs-target="#usuarios-pane" type="button" role="tab">Gestión de Supervivientes</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-white fw-bold bg-dark border-danger" id="productos-tab" data-bs-toggle="tab" data-bs-target="#productos-pane" type="button" role="tab">Gestión de Suministros</button>
+            </li>
+        </ul>
+
+        <!-- Contenido de las Pestañas -->
+        <div class="tab-content mt-4" id="adminTabsContent">
+            
+            <!-- PESTAÑA: USUARIOS -->
+            <div class="tab-pane fade show active" id="usuarios-pane" role="tabpanel">
+                <div class="d-flex justify-content-between mb-3">
+                    <h3>Supervivientes Registrados</h3>
+                    <!-- Botón para abrir el modal (puedes ubicarlo en tu panel de admin) -->
+<button type="button" class="btn btn-danger fw-bold shadow border border-light" data-bs-toggle="modal" data-bs-target="#modalRegistroAdmin">
+    + REGISTRAR NUEVO SUPERVIVIENTE
+</button>
+
+<!-- Modal de Registro -->
+<div class="modal fade" id="modalRegistroAdmin" tabindex="-1" aria-labelledby="modalRegistroAdminLabel" aria-hidden="true">
+    <!-- modal-dialog-scrollable evita que el modal sobrepase la altura de la pantalla -->
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content bg-dark border border-danger shadow-lg">
+            
+            <div class="modal-header border-danger">
+                <div>
+                    <h2 class="modal-title TituloBunker text-danger fs-2" id="modalRegistroAdminLabel">REGISTRO DE SUPERVIVIENTE</h2>
+                    <p class="text-warning fs-6 mb-0">Modo Administrador: Ingreso manual de provisiones.</p>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <form id="registroBunkerFormAdmin" novalidate>
+                    <div class="mb-3">
+                        <label for="run" class="form-label text-white fs-5">RUN (sin puntos ni guión)</label>
+                        <input type="text" class="form-control text-white bg-secondary border-danger" id="run" placeholder="12345678K" maxlength="10">
+                        <small class="text-danger d-none fw-bold" id="errorRun">Ingresa un RUN válido sin puntos ni guión (ej: 12345678K).</small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre" class="form-label text-white fs-5">Nombre</label>
+                            <input type="text" class="form-control text-white bg-secondary border-danger" id="nombre" placeholder="Ej: Juan" maxlength="50">
+                            <small class="text-danger d-none fw-bold" id="errorNombre">El nombre es obligatorio.</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="apellidos" class="form-label text-white fs-5">Apellidos</label>
+                            <input type="text" class="form-control text-white bg-secondary border-danger" id="apellidos" placeholder="Ej: Pérez" maxlength="50">
+                            <small class="text-danger d-none fw-bold" id="errorApellidos">Los apellidos son obligatorios.</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-white fs-5">Frecuencia Digital (Correo Electrónico)</label>
+                        <input type="email" class="form-control text-white bg-secondary border-danger" id="email" placeholder="superviviente@duoc.cl" maxlength="100">
+                        <small class="text-danger d-none fw-bold" id="errorEmail">Debe ser @duoc.cl, @duocuc.cl, @profesor.duoc.cl o @gmail.com.</small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="password" class="form-label text-white fs-5">Clave Temporal</label>
+                            <input type="password" class="form-control text-white bg-secondary border-danger" id="password" placeholder="Mínimo 6 caracteres">
+                            <small class="text-danger d-none fw-bold" id="errorPassword">La contraseña debe tener al menos 6 caracteres.</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="confirmPassword" class="form-label text-white fs-5">Confirmar Clave</label>
+                            <input type="password" class="form-control text-white bg-secondary border-danger" id="confirmPassword" placeholder="Repite la contraseña">
+                            <small class="text-danger d-none fw-bold" id="errorConfirmPassword">Las contraseñas no coinciden.</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechaNacimiento" class="form-label text-white fs-5">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control text-white bg-secondary border-danger" id="fechaNacimiento">
+                        <small class="text-danger d-none fw-bold" id="errorFechaNacimiento">La fecha de nacimiento es obligatoria.</small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="region" class="form-label text-white fs-5">Región Sectorial</label>
+                            <select class="form-select text-white bg-secondary border-danger" id="region">
+                                <option value="">-- Selecciona una región --</option>
+                            </select>
+                            <small class="text-danger d-none fw-bold" id="errorRegion">Selecciona una región.</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="comuna" class="form-label text-white fs-5">Comuna / Búnker Local</label>
+                            <select class="form-select text-white bg-secondary border-danger" id="comuna" disabled>
+                                <option value="">-- Selecciona primero una región --</option>
+                            </select>
+                            <small class="text-danger d-none fw-bold" id="errorComuna">Selecciona una comuna.</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label text-white fs-5">Dirección / Coordenadas</label>
+                        <input type="text" class="form-control text-white bg-secondary border-danger" id="direccion" placeholder="Ej: Av. Siempre Viva 123" maxlength="100">
+                        <small class="text-danger d-none fw-bold" id="errorDireccion">La dirección es obligatoria.</small>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="telefono" class="form-label text-white fs-5">Canal de Transmisión (Teléfono - Opcional)</label>
+                        <input type="tel" class="form-control text-white bg-secondary border-danger" id="telefono" placeholder="+56912345678">
+                    </div>
+
+                    <button type="submit" class="btn btn-danger w-100 fw-bold py-2 fs-4 shadow border border-light">
+                        GENERAR CREDENCIAL DE ACCESO
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- PESTAÑA: PRODUCTOS -->
+            <div class="tab-pane fade" id="productos-pane" role="tabpanel">
+                <div class="d-flex justify-content-between mb-3">
+                    <h3>Inventario de Suministros</h3>
+                    <button class="btn btn-success fw-bold" onclick="abrirModalProducto()">+ Añadir Producto</button>
+                </div>
+                <table class="table table-dark table-hover border-danger">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProductos">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal CRUD General -->
+    <div class="modal fade" id="crudModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-danger">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title text-danger" id="modalTitulo">Formulario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crudForm">
+                        <input type="hidden" id="crudId">
+                        <input type="hidden" id="crudTipo"> <!-- 'usuario' o 'producto' -->
+                        
+                        <div class="mb-3">
+                            <label class="form-label" id="labelCampo1">Nombre/Alias</label>
+                            <input type="text" class="form-control bg-secondary text-white border-danger" id="inputCampo1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" id="labelCampo2">Email/Precio</label>
+                            <input type="text" class="form-control bg-secondary text-white border-danger" id="inputCampo2" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100 fw-bold">Guardar Datos</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Inicializar datos simulados si no existen en localStorage
+        if(!localStorage.getItem('adminUsers')) {
+            localStorage.setItem('adminUsers', JSON.stringify([{id: 1, nombre: 'Cazador_99', email: 'caza@bunker.com'}]));
+        }
+        if(!localStorage.getItem('adminProducts')) {
+            localStorage.setItem('adminProducts', JSON.stringify([{id: 1, nombre: 'Kit Médico Básico', precio: '$150'}]));
+        }
+
+        const modalCRUD = new bootstrap.Modal(document.getElementById('crudModal'));
+
+        // ================= RENDERIZAR TABLAS =================
+        function renderTablas() {
+            const users = JSON.parse(localStorage.getItem('adminUsers')) || [];
+            const products = JSON.parse(localStorage.getItem('adminProducts')) || [];
+            
+            const tbodyUsers = document.getElementById('tablaUsuarios');
+            tbodyUsers.innerHTML = '';
+            users.forEach(u => {
+                tbodyUsers.innerHTML += `
+                    <tr>
+                        <td>${u.id}</td><td>${u.nombre}</td><td>${u.email}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="editar('usuario', ${u.id})">Editar</button>
+                            <button class="btn btn-sm btn-danger" onclick="eliminar('usuario', ${u.id})">Borrar</button>
+                        </td>
+                    </tr>`;
+            });
+
+            const tbodyProducts = document.getElementById('tablaProductos');
+            tbodyProducts.innerHTML = '';
+            products.forEach(p => {
+                tbodyProducts.innerHTML += `
+                    <tr>
+                        <td>${p.id}</td><td>${p.nombre}</td><td>${p.precio}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="editar('producto', ${p.id})">Editar</button>
+                            <button class="btn btn-sm btn-danger" onclick="eliminar('producto', ${p.id})">Borrar</button>
+                        </td>
+                    </tr>`;
+            });
+        }
+
+        // ================= LÓGICA CRUD =================
+        function abrirModalUsuario() {
+            document.getElementById('crudForm').reset();
+            document.getElementById('crudId').value = '';
+            document.getElementById('crudTipo').value = 'usuario';
+            document.getElementById('modalTitulo').innerText = 'Añadir Superviviente';
+            document.getElementById('labelCampo1').innerText = 'Alias de Combate';
+            document.getElementById('labelCampo2').innerText = 'Frecuencia (Email)';
+            modalCRUD.show();
+        }
+
+        function abrirModalProducto() {
+            document.getElementById('crudForm').reset();
+            document.getElementById('crudId').value = '';
+            document.getElementById('crudTipo').value = 'producto';
+            document.getElementById('modalTitulo').innerText = 'Añadir Producto';
+            document.getElementById('labelCampo1').innerText = 'Nombre del Producto';
+            document.getElementById('labelCampo2').innerText = 'Precio (Ej: $100)';
+            modalCRUD.show();
+        }
+
+        document.getElementById('crudForm').onsubmit = function(e) {
+            e.preventDefault();
+            const tipo = document.getElementById('crudTipo').value;
+            const id = document.getElementById('crudId').value;
+            const campo1 = document.getElementById('inputCampo1').value;
+            const campo2 = document.getElementById('inputCampo2').value;
+            
+            const claveStorage = tipo === 'usuario' ? 'adminUsers' : 'adminProducts';
+            let data = JSON.parse(localStorage.getItem(claveStorage));
+
+            if(id) { // Editar existente
+                const index = data.findIndex(item => item.id == id);
+                data[index].nombre = campo1;
+                if(tipo === 'usuario') data[index].email = campo2;
+                else data[index].precio = campo2;
+            } else { // Crear nuevo
+                const nuevoId = data.length > 0 ? Math.max(...data.map(i => i.id)) + 1 : 1;
+                if(tipo === 'usuario') data.push({id: nuevoId, nombre: campo1, email: campo2});
+                else data.push({id: nuevoId, nombre: campo1, precio: campo2});
+            }
+
+            localStorage.setItem(claveStorage, JSON.stringify(data));
+            modalCRUD.hide();
+            renderTablas();
+        };
+
+        function eliminar(tipo, id) {
+            if(!confirm('¿Estás seguro de eliminar este registro?')) return;
+            const claveStorage = tipo === 'usuario' ? 'adminUsers' : 'adminProducts';
+            let data = JSON.parse(localStorage.getItem(claveStorage));
+            data = data.filter(item => item.id != id);
+            localStorage.setItem(claveStorage, JSON.stringify(data));
+            renderTablas();
+        }
+
+        function editar(tipo, id) {
+            const claveStorage = tipo === 'usuario' ? 'adminUsers' : 'adminProducts';
+            const data = JSON.parse(localStorage.getItem(claveStorage));
+            const item = data.find(i => i.id == id);
+            
+            if(tipo === 'usuario') {
+                abrirModalUsuario();
+                document.getElementById('inputCampo2').value = item.email;
+            } else {
+                abrirModalProducto();
+                document.getElementById('inputCampo2').value = item.precio;
+            }
+            document.getElementById('crudId').value = item.id;
+            document.getElementById('inputCampo1').value = item.nombre;
+            document.getElementById('modalTitulo').innerText = 'Editar Registro';
+        }
+
+        // Cargar tablas al iniciar
+        document.addEventListener('DOMContentLoaded', renderTablas);
+    </script>
+</body>
+</html>

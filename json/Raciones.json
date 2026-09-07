@@ -3,21 +3,21 @@
     "id": 9,
     "nombre": "PACK DE ENLATADOS DIVERSOS",
     "descripcion": "Lote de conservas variadas que incluye sardinas, salmón, harina y aceite. Alimentos ricos en nutrientes y con larga fecha de caducidad para situaciones de emergencia.",
-    "precio": "$35 USD",
+    "precio": "$35.000 CLP",
     "imagen": "../img/raciones1.jpg"
   },
   {
     "id": 10,
     "nombre": "PACK DE AGUA PURIFICADA 6L",
     "descripcion": "Set de botellas de agua mineral tratada y sellada herméticamente. Garantiza la hidratación esencial y segura para sobrevivir durante días en el búnker.",
-    "precio": "$15 USD",
+    "precio": "$15.000 CLP",
     "imagen": "../img/raciones2.jpg"
   },
   {
     "id": 11,
     "nombre": "RESERVA DE CONSERVAS Y VEGETALES",
     "descripcion": "Surtido masivo de frascos y latas con legumbres, verduras, maíz y tomates. Excelente fuente de vitaminas para mantener una dieta equilibrada en refugios.",
-    "precio": "$45 USD",
+    "precio": "$45.000 CLP",
     "imagen": "../img/raciones3.jpg"
   }
 ]
